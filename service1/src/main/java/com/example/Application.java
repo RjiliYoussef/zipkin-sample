@@ -5,10 +5,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.sleuth.Tracer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -16,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableDiscoveryClient
 @RestController
+@EnableCircuitBreaker
 public class Application {
 
 	public static void main(String[] args) {
@@ -43,6 +46,7 @@ public class Application {
 		return response;
 	}
 
+
 	@RequestMapping("/call-timeout")
 	public String callTimeout() throws InterruptedException {
 		log.info(" from service1, calling service2");
@@ -52,4 +56,15 @@ public class Application {
 		return response;
 	}
 
+
+    @Autowired
+    FallbackTest fallbackTest;
+    @RequestMapping("/fallbacktest")
+    public String method2() throws InterruptedException {
+         return fallbackTest.service1_OK_method();
+    }
+
+
 }
+
+

@@ -1,0 +1,10 @@
+logging:
+  level.org.springframework.cloud: DEBUG
+
+turbine:
+  stream:
+    port:8989
+
+spring:
+  application:
+    name: turbine-server

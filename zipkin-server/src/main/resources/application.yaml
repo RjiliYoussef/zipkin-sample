@@ -6,7 +6,7 @@ server:
 
 spring:
   application:
-    name: zipkin-server-min
+    name: zipkin-server
   rabbitmq:
     host: ${RABBIT_HOST:localhost}
   sleuth:

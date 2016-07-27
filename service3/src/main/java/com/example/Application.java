@@ -1,11 +1,13 @@
 package com.example;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.sleuth.Tracer;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableDiscoveryClient
 @RestController
+@EnableCircuitBreaker
 public class Application {
 
 	public static void main(String[] args) {
@@ -34,6 +37,7 @@ public class Application {
 	String serverPort;
 
 	@RequestMapping("/call")
+	@HystrixCommand()
 	public String foo() throws InterruptedException{
 		log.info("from service3, calling service3"+serverPort);
 		Thread.sleep(100);
@@ -41,6 +45,7 @@ public class Application {
 	}
 
 	@RequestMapping("/call-timeout")
+	@HystrixCommand()
 	public String callTimeout() throws InterruptedException{
 		log.info("from service3, calling service3"+serverPort);
 		Thread.sleep(1000);
