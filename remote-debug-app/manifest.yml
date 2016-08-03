@@ -1,0 +1,15 @@
+---
+applications:
+- name: sample-app
+  memory: 512mb
+  instances: 1
+  buildpack: java_buildpack_offline
+  host: sample-app
+  path: target/sample-app-0.0.1-SNAPSHOT.jar
+  timeout: 180
+  env:
+    SPRING_PROFILES_ACTIVE: cloud
+    JAVA_OPTS: -agentlib:jdwp=transport=dt_socket,server=n,address=192.168.0.243:5005,suspend=n
+#  services:
+#   - discovery-service
+
