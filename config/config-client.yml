@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: dev
+---
+spring:
+  profiles: dev
+key1: devkey1
+key2: devkey2
+foo: devfoo
+aaa: aaa
+---
+spring:
+  profiles: cloud
+key1: cloudkey1
+key2: cloudkey2
+foo: cloudfoo
