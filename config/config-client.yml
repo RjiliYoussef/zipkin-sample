@@ -1,4 +1,6 @@
 spring:
+  config:
+    name: config-client
   profiles:
     active: dev
 ---
@@ -8,6 +10,7 @@ key1: devkey1
 key2: devkey2
 foo: devfoo
 aaa: aaa
+eureka.instance.hostname: b
 ---
 spring:
   profiles: cloud

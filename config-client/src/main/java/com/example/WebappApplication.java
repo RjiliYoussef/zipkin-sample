@@ -21,23 +21,28 @@ public class WebappApplication {
 }
 
 
+
 @Configuration
 @RefreshScope
 @RestController
  class Test{
-	@Value("${foo}")
-	String foo;
 
-	@RequestMapping("/foo")
-	public String foo(){
-		return foo;
-	}
-
-	@Value("${aaa}")
+	@Value("${eureka.instance.hostname}")
 	String aaa;
 
-	@RequestMapping("/aaa")
+	@RequestMapping("/")
 	public String aaa(){
 		return aaa;
 	}
+
+	@RequestMapping("/static")
+	public String bb(){
+              return ST.aaa;
+        }
+}
+
+class ST{
+	@Value("${eureka.instance.hostname}")
+           static String aaa= "a";
+
 }

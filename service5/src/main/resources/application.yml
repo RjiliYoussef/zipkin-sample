@@ -1,0 +1,37 @@
+server.port: 8085
+logging.level.org.springframework.cloud.sleuth: DEBUG
+
+
+spring:
+  application:
+    name: service5
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+  instance:
+    leaseRenewalIntervalInSecond: 3
+    metadataMap:
+      instanceId: ${vcap.application.application_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+
+security:
+  basic:
+    enabled: false
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+
+
+troublemaker.client.token: abc123
+
+# management.health.binders.enabled: true
+
+# endpoints.health.sensitive: false
+management.security.enabled: false
