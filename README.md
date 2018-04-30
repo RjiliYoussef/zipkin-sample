@@ -1,5 +1,6 @@
 # testing zipkin-server and sleuth on spring-boot with eureka-server on local machine.
 
+
 ##  prepare jdk 1.8
 
 ## rabbitmq : default port: 5672
