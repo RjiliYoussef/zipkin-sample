@@ -21,3 +21,4 @@ endpoints:
     enabled: true
   health:
     sensitive: false
+spring.sleuth.sampler.percentage: 1.0

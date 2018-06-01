@@ -5,13 +5,11 @@ applications:
   instances: 1
   timeout: 180
   host: service5
+  buildpack: java_buildpack_offline
   path: target/service5-0.0.1-SNAPSHOT.jar
   env:
-    TRUST_CERTS: api.system.pcfdemo.net
-    SPRING_PROFILES_ACTIVE: cloud
+    TRUST_CERTS: api.sys.sec.mzdemo.net
   services:
     - discovery-service
     - config-service
-    - circuit-breaker
-
 

@@ -1,17 +1,22 @@
-server.port: 8083
+server.port: 8084
 logging.level.org.springframework.cloud.sleuth: DEBUG
 
 
 spring:
   application:
-    name: service3
+    name: service4
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-  instance:
-    leaseRenewalIntervalInSecond: 3
+management.security.enabled: false
+security.basic.enabled: false
+
+#security.user.password: password
+
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/
+#  instance:
+#    leaseRenewalIntervalInSecond: 3
 #    metadataMap:
 #      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
 
@@ -22,5 +27,4 @@ endpoints:
     enabled: true
   health:
     sensitive: false
-#spring.sleuth.sampler.percentage: 1.0
-#spring.sleuth.web.skipPattern: (^cleanup.*|.+favicon.*|^service*)
+spring.sleuth.sampler.percentage: 1.0

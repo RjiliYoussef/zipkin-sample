@@ -1,4 +1,4 @@
-server.port: 8085
+server.port: 8084
 logging.level.org.springframework.cloud.sleuth: DEBUG
 
 
@@ -6,7 +6,11 @@ spring:
   application:
     name: service4
 
-security.user.password: password
+management.security.enabled: false
+security:
+  basic.enabled: false
+
+#security.user.password: password
 
 #eureka:
 #  client:
@@ -24,3 +28,4 @@ endpoints:
     enabled: true
   health:
     sensitive: false
+spring.sleuth.sampler.percentage: 0.0

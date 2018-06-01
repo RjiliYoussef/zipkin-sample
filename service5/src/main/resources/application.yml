@@ -7,14 +7,14 @@ spring:
     name: service5
 
 eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-
   instance:
-    leaseRenewalIntervalInSecond: 3
+    leaseRenewalIntervalInSeconds: 10
     metadataMap:
       instanceId: ${vcap.application.application_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+  client:
+    serviceUrl:
+      defaultZone: ${vcap.services.discovery-service.credentials.uri:http://127.0.0.1:8761}/eureka/
+      
 
 security:
   basic:
@@ -35,3 +35,6 @@ troublemaker.client.token: abc123
 
 # endpoints.health.sensitive: false
 management.security.enabled: false
+
+spring.sleuth.sampler.percentage: 1.0
+spring.sleuth.web.skipPattern: (^cleanup.*|.+favicon.*|^service*)
